@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cadastro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formCadastro">
+    <ion-item color="dark">
+      <ion-label>Nome </ion-label>
+      <ion-input formControlName="nome"></ion-input>
+      <ng-container *ngFor="let erro of mensagens.nome">
+        <span class="msg-erro"
+        *NgIf="formCadastro.get('nome').hasError(erro.tipo) && (formCadastro.get('nome').dirty || formCadastro.get('nome').touched)">
+          {{erro.mensagem}}
+        </span>
+      </ng-container>
+    </ion-item>
+    <ion-item color="dark">
+      <ion-label>CPF: </ion-label>
+      <ion-input formControlName="cpf"></ion-input>
+    </ion-item>
+    <ion-item color="dark">
+      <ion-label>Email: </ion-label>
+      <ion-input formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item color="dark">
+      <ion-label>Senha: </ion-label>
+      <ion-input type="password" formControlName="senha"></ion-input>
+    </ion-item>
+    <ion-item color="dark">
+      <ion-label>Confirmar senha: </ion-label>
+      <ion-input type="password" formControlName="confirmaSenha"></ion-input>
+    </ion-item>
+    <ion-button expand="block" (click)="salvarCadastro()">Block</ion-button>
+  </form>
+</ion-content>
